@@ -1,6 +1,6 @@
 import BookCard from "./BookCard";
-export default function Booklist({ books }) {
-    if (books.length === 0) {
+export default function Booklist({ books, onReserve }) {
+    if (!books || books.length === 0) {
         return <p>Nenhum livro no acervo.</p>;
     }
     return (
@@ -8,9 +8,8 @@ export default function Booklist({ books }) {
             {books.map((book) => (
                 <BookCard
                     key={book.id}
-                    title={book.title}
-                    author={book.author}
-                    available={book.available}
+                    {...book}
+                    onReserve={onReserve}
                 />
             ))}
         </section>
