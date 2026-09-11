@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import BookForm from "./components/BookForm";
 import BookList from "./components/BookList";
 import Panel from "./components/Panel";
 import { books as initialBooks } from "./data/books";
@@ -16,6 +17,9 @@ export default function App() {
       )
     );
   }
+  function handleAddBook(newBook) {
+    setBooks((currentBooks) => [...currentBooks, newBook]);
+  }
   return (
     <main className="app">
       <header className="hero">
@@ -25,6 +29,9 @@ export default function App() {
           {availableCount} de {books.length} livros disponíveis.
         </p>
       </header>
+      <Panel title="Novo livro">
+        <BookForm onAddBook={handleAddBook} />
+      </Panel>
 
       <Panel title="Acervo de Livros">
         <BookList books={books} onReserve={handleToggleReserve} />
